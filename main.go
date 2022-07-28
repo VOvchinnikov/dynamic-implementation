@@ -6,23 +6,21 @@ import (
 )
 
 type Interface interface { // re-declare it here for the getter method
-	ProcessStuff() (string, error)
+	ProcessStuff(string) (string, error)
 }
 
-type Implementation struct {
-	StuffToProcess string
-}
+type Implementation struct{}
 
 func NewImplementation() Interface {
 	return &Implementation{}
 }
 
-func (i *Implementation) ProcessStuff() (string, error) {
-	if i.StuffToProcess == "" {
+func (i *Implementation) ProcessStuff(stuff string) (string, error) {
+	if stuff == "" {
 		return "", errors.New("stuff was empty")
 	}
 
-	return fmt.Sprintf("I have processed the stuff, it was %s", i.StuffToProcess), nil
+	return fmt.Sprintf("I have processed the stuff, it was %s", stuff), nil
 }
 
 func main() {}
