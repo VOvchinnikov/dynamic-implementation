@@ -5,8 +5,16 @@ import (
 	"fmt"
 )
 
+type Interface interface { // re-declare it here for the getter method
+	ProcessStuff() (string, error)
+}
+
 type Implementation struct {
 	StuffToProcess string
+}
+
+func NewImplementation() Interface {
+	return &Implementation{}
 }
 
 func (i *Implementation) ProcessStuff() (string, error) {
